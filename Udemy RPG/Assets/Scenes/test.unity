@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 546262093}
   - component: {fileID: 546262092}
   m_Layer: 0
-  m_Name: hardBox
+  m_Name: Area Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
