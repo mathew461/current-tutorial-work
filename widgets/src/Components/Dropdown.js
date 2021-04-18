@@ -1,13 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Dropdown = ({ options, selected, onSelectedChange }) => {
     const [open, setOpen] = useState(false);
+    const ref = useRef();
 
+    //console.log(event.target) // shows in console log what section was clicked on!! Use in future to learn more about site structure
     useEffect(() => {
-        document.body.addEventListener('click', (event) => {
-            console.log(event.target) // shows in console log what section was clicked on!! Use in future to learn more about site structure
+        const onBodyClick = (event) => {
+            if (ref.current && ref.current.contains(event.target)) {
+                return;
+            }
+
+
             setOpen(false)
-        }, { capture: true});
+        };   
+
+        document.body.addEventListener('click', onBodyClick);
+
+        return () => {
+            document.body.addEventListener('click', onBodyClick);
+        };
     }, []);
 
     const renderedOptions = options.map((option) => {
@@ -26,8 +38,10 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
         );
     });
 
+    console.log(ref.current)
+
     return (
-        <div className="ui form">
+        <div ref={ref} className="ui form">
             <div className="field">
                 <label className="label">Select a Color</label>
                 <div onClick={() => setOpen(!open)}
