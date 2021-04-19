@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Accordion from './Components/Accordion';
 import Search from './Components/Search';
 import Dropdown from './Components/Dropdown';
+import Translate from './Components/Translate';
+import Route from './Components/Route';
+
 
 const items = [
     {
@@ -33,20 +36,54 @@ const options = [
     }
 ];
 
+
+
+const showAccordion = () => {
+    if (window.location.pathname === '/') {
+        return <Accordion items={items} />;
+    }
+}
+
+const showList = () => {
+    if (window.location.pathname === '/list') {
+        return <Search />;
+    }
+};
+
+const showDropdown = () => {
+    if (window.location.pathname === '/dropdown') {
+        return <Dropdown />;
+    }
+};
+
+const showTranslate = () => {
+    if (window.location.pathname === '/translate') {
+        return <Translate />
+    }
+}
+
 export default () => {
-   const [selected, setSelected] = useState(options[0]);
-   const [showDropdown, setShowDropdown] = useState(true);
+    const [selected, setSelected] = useState(options[0]);
    
     return (
         <div>
-            <button onClick={() => setShowDropdown(!showDropdown)}>Toggle Dropdown</button>
-            {showDropdown ? 
+            <Route path="/">
+                <Accordion items={items} />
+            </Route>
+            <Route path="/list">
+                <Search />
+            </Route>
+            <Route path="/dropdown">
                 <Dropdown 
-                    selected={selected} 
+                    label="Select a color"
+                    options={options}
+                    selected={selected}
                     onSelectedChange={setSelected}
-                    options={options} 
-                /> : null
-            }
+                />
+            </Route>
+            <Route path="/translate">
+                <Translate />
+            </Route>
         </div>
     )
 };
