@@ -1,3 +1,7 @@
+//Deployed Site: https://videos-hooks-cyan-eight.vercel.app/
+// Site is being Deployed by Vercel, to update type "vercel --prod" in CMD
+//To start Vercel, simply use Vercel login in CMD, and once this has been done type vercel
+
 import React, { useState, useEffect } from 'react';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
