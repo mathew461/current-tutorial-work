@@ -1,4 +1,4 @@
-// Deployed Site: Failed to Deploy
+// Deployed Site: Failed to Deploy with Vercel
 
 import React, { useState } from 'react';
 import Accordion from './Components/Accordion';
@@ -37,8 +37,6 @@ const options = [
         value: 'blue'
     }
 ];
-
-
 
 
 export default () => {
